@@ -1,14 +1,47 @@
-import _ from 'lodash';
 import './style.css';
 
-function component() {
-  const element = document.createElement('div');
+const toDoTasksArray = [
+  {
+    description: 'Go to Gym',
+    completed: false,
+    index: 3,
+  },
+  {
+    description: 'Relax and get to sleep',
+    completed: false,
+    index: 4,
+  },
+  {
+    description: 'Wakeup from sleep and eat breakfast',
+    completed: false,
+    index: 1,
+  },
+  {
+    description: "Work on today's tasks",
+    completed: false,
+    index: 2,
+  },
 
-  // Lodash, now imported by this script
-  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-  element.classList.add('hello');
+];
+class ToDoList {
+  constructor(toDoTasksArray, container) {
+    this.toDoTasksArray = toDoTasksArray;
+    this.container = document.querySelector(container);
+  }
 
-  return element;
+  displayToDo() {
+    this.toDoTasksArray.sort((a, b) => a.index - b.index);
+
+    this.container.innerHTML = this.toDoTasksArray.map((todo) => `
+            <article>
+            <p><input type="checkbox"> ${todo.description} <span> &#xFE19;</span></p>
+            <hr class="line-break">
+            </article>`).join('');
+  }
 }
 
-document.body.appendChild(component());
+const myToDo = new ToDoList(toDoTasksArray, '.list-item');
+
+document.addEventListener('DOMContentLoaded', () => {
+  myToDo.displayToDo();
+});

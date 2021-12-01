@@ -1,3 +1,41 @@
 body {
-  background-color: red;
+  font-family: 'Open Sans', 'Lucida Grande', arial, sans-serif;
+  margin: 14%;
+}
+
+.todo-container {
+  box-shadow: 5px 15px 30px 0 #888;
+  padding: 10px;
+}
+
+.todo-container a {
+  text-decoration: none;
+}
+
+article span {
+  float: right;
+}
+
+.todo-container h3 {
+  font-weight: lighter;
+}
+
+.add-list span,
+.todo-container h3 span {
+  float: right;
+  opacity: 0.5;
+}
+
+.line-break {
+  border-top: 1px solid #f1eaeaf2;
+}
+
+.add-list {
+  opacity: 0.5;
+}
+
+.clear-completed p {
+  text-align: center;
+  opacity: 0.5;
+  text-decoration: none;
 }
