@@ -1,6 +1,6 @@
 body {
   font-family: 'Open Sans', 'Lucida Grande', arial, sans-serif;
-  margin: 14%;
+  margin: 13% 30%;
 }
 
 .todo-container {
@@ -38,4 +38,9 @@ article span {
   text-align: center;
   opacity: 0.5;
   text-decoration: none;
+}
+
+.complete {
+  text-decoration: line-through;
+  opacity: 0.3;
 }

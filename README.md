@@ -2,6 +2,10 @@
 
 This project is a simple HTML list of To Do tasks. 
 
+![image](https://user-images.githubusercontent.com/34578631/144275642-b37f4e8d-b5e2-42d7-b632-6de1875563c8.png)
+
+This To-do list project set-up GitHub Actions that uses linter for HTML, CSS, and JavaScript also uses webpack as module bundler.
+
 ## Built With
 
 - JavaScript
@@ -22,7 +26,7 @@ To work on this project locally you need to have Node.js installed in your machi
 
 ### Setup
 
-You need to have text editor (VS code, Atom) or any of your choice.
+To setup this project first you should have to clone the repository and the go to the projects directory and run `npm install` command to install the needed dependency. After that run `npm start` command to run the project from local server to `http://localhost:8080/`.
 
 ### Install
 
@@ -30,7 +34,7 @@ You have to have Node.js installed before working on this project.
 
 ### Usage
 
-You can start using Portfolio by cloning the repository.
+You can start using To-Do-App by cloning the repository.
 
 
 
