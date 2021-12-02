@@ -1,12 +1,15 @@
+/* eslint-disable max-classes-per-file */
+
 import './style.css';
 import interactive from './interactiveList.js';
+import clearCompletedTasks from './addRemove.js';
 
 class singleToDo {
-    constructor(description) {
-      this.description = description;
-      this.completed = false;
-      this.index = parseInt((Math.random() * 100), 10);
-    }
+  constructor(description) {
+    this.description = description;
+    this.completed = false;
+    this.index = 0;
+  }
 }
 class ToDoList {
   constructor(toDoTasksArray = [], container) {
@@ -17,6 +20,11 @@ class ToDoList {
   addToDo(todo) {
     const newToDo = new singleToDo(todo);
     this.toDoTasksArray.push(newToDo);
+    //update index
+    this.toDoTasksArray = this.toDoTasksArray.map((todo, index=1)=>{
+        todo.index = index;
+        return todo
+    })
     this.displayToDo();
     this.setListToLocal(this.toDoTasksArray);
     location.reload();
@@ -25,6 +33,11 @@ class ToDoList {
   removeToDo(todoId) {
     const filterToDo = this.toDoTasksArray.filter((todo) => parseInt((todoId), 10) !== todo.index);
     this.toDoTasksArray = filterToDo;
+    //update index
+    this.toDoTasksArray = this.toDoTasksArray.map((todo, index=1)=>{
+        todo.index = index;
+        return todo
+    })
     this.displayToDo();
     this.setListToLocal(this.toDoTasksArray);
     location.reload();
@@ -62,25 +75,24 @@ class ToDoList {
         <button id=${todo.index} class="todo-btn" > &#128465;</button></div>
         <hr class="line-break">
         </article>`).join('');
-        // <button class="todo-btn" onclick="removeThisToDo()"> &#128465; ${todo.description==='' ? '' : '&#xFE19'};</button></p>
   }
 }
 
 const myToDo = new ToDoList([], '.list-item');
 
 document.addEventListener('click', (e) => {
-    interactive(e);
-    const todoId = e.target.parentElement.parentElement.id;
-    if (e.target.checked) {
-        const upDatedToDo = myToDo.getToDoArray().map((todo) => {
-            if (todo.index === parseInt((todoId), 10)) {
-                const newTodo = { ...todo };
-                newTodo.completed = true;
-                return newTodo;
-            }
-            return todo;
-        });
-        myToDo.setToDoArray(upDatedToDo);
+  interactive(e);
+  const todoId = e.target.parentElement.parentElement.id;
+  if (e.target.checked) {
+    const upDatedToDo = myToDo.getToDoArray().map((todo) => {
+      if (todo.index === parseInt((todoId), 10)) {
+        const newTodo = { ...todo };
+        newTodo.completed = true;
+        return newTodo;
+      }
+      return todo;
+    });
+    myToDo.setToDoArray(upDatedToDo);
   } else {
     const upDatedToDo = myToDo.getToDoArray().map((todo) => {
       if (todo.index === parseInt((todoId), 10)) {
@@ -94,39 +106,30 @@ document.addEventListener('click', (e) => {
   }
 });
 
-const inputField = document.querySelector('.inputField')
-const inputTodo = document.getElementById('input-todo')
+const inputField = document.querySelector('.inputField');
+const inputTodo = document.getElementById('input-todo');
 
 inputField.addEventListener('keyup', (e) => {
-    if (e.key === "Enter") {        
-        myToDo.addToDo(inputTodo.value)
-        inputTodo.value = ''
-    }
-}) 
-
-const clearCompleted = document.querySelector('.clear-completed');
+  if (e.key === 'Enter') {
+    myToDo.addToDo(inputTodo.value);
+    inputTodo.value = '';
+  }
+});
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    
     myToDo.getListFromLocal();
     myToDo.displayToDo();
+    clearCompletedTasks();
     
-    const btn = document.getElementsByClassName("todo-btn");
+    const btn = document.getElementsByClassName('todo-btn');
     
-    for (var i = 0, len = btn.length; i < len; i++) {
-        btn[i].addEventListener('click', (e) => {
-            const remove = e.target.id;
-            myToDo.removeToDo(remove);
-        }, false)
+    for (let i = 0, len = btn.length; i < len; i++) {
+      btn[i].addEventListener('click', (e) => {
+        const remove = e.target.id;
+        myToDo.removeToDo(remove);
+      }, false);
     }
-    
-    clearCompleted.addEventListener('click', () => {
-        myToDo.getToDoArray().map((todo) => {
-            const newTodo = { ...todo };
-            if(newTodo.completed){
-                myToDo.removeToDo(newTodo.index)
-            }
-        });
-    })
 });
+
+export default myToDo;
