@@ -1,10 +1,11 @@
 /* eslint-disable max-classes-per-file */
+/* eslint-disable  import/no-cycle */
 
 import './style.css';
 import interactive from './interactiveList.js';
 import clearCompletedTasks from './addRemove.js';
 
-class singleToDo {
+class SingleToDo {
   constructor(description) {
     this.description = description;
     this.completed = false;
@@ -18,29 +19,29 @@ class ToDoList {
   }
 
   addToDo(todo) {
-    const newToDo = new singleToDo(todo);
+    const newToDo = new SingleToDo(todo);
     this.toDoTasksArray.push(newToDo);
-    //update index
-    this.toDoTasksArray = this.toDoTasksArray.map((todo, index=1)=>{
-        todo.index = index;
-        return todo
-    })
+    // update index
+    this.toDoTasksArray = this.toDoTasksArray.map((todo, index = 1) => {
+      todo.index = index;
+      return todo;
+    });
     this.displayToDo();
     this.setListToLocal(this.toDoTasksArray);
-    location.reload();
+    window.location.reload();
   }
 
   removeToDo(todoId) {
     const filterToDo = this.toDoTasksArray.filter((todo) => parseInt((todoId), 10) !== todo.index);
     this.toDoTasksArray = filterToDo;
-    //update index
-    this.toDoTasksArray = this.toDoTasksArray.map((todo, index=1)=>{
-        todo.index = index;
-        return todo
-    })
+    // update index
+    this.toDoTasksArray = this.toDoTasksArray.map((todo, index = 1) => {
+      todo.index = index;
+      return todo;
+    });
     this.displayToDo();
     this.setListToLocal(this.toDoTasksArray);
-    location.reload();
+    window.location.reload();
   }
 
   setToDoArray(newToDoArray) {
@@ -116,20 +117,19 @@ inputField.addEventListener('keyup', (e) => {
   }
 });
 
-
 document.addEventListener('DOMContentLoaded', () => {
-    myToDo.getListFromLocal();
-    myToDo.displayToDo();
-    clearCompletedTasks();
-    
-    const btn = document.getElementsByClassName('todo-btn');
-    
-    for (let i = 0, len = btn.length; i < len; i++) {
-      btn[i].addEventListener('click', (e) => {
-        const remove = e.target.id;
-        myToDo.removeToDo(remove);
-      }, false);
-    }
+  myToDo.getListFromLocal();
+  myToDo.displayToDo();
+  clearCompletedTasks();
+
+  const btn = document.getElementsByClassName('todo-btn');
+
+  for (let i = 0; i < btn.length; i += 1) {
+    btn[i].addEventListener('click', (e) => {
+      const remove = e.target.id;
+      myToDo.removeToDo(remove);
+    }, false);
+  }
 });
 
 export default myToDo;

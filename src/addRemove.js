@@ -1,3 +1,5 @@
+/* eslint-disable  import/no-cycle */
+
 import myToDo from './index.js';
 
 const clearCompleted = document.querySelector('.clear-completed');
@@ -9,6 +11,7 @@ export default function clearCompletedTasks() {
       if (newTodo.completed) {
         myToDo.removeToDo(newTodo.index);
       }
+      return todo;
     });
   });
 }
