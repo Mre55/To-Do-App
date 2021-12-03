@@ -44,3 +44,17 @@ article span {
   text-decoration: line-through;
   opacity: 0.3;
 }
+
+.inputField {
+  border: none;
+}
+
+.text-area-class {
+  border: none;
+  resize: none;
+}
+
+.todo-btn {
+  border: none;
+  background: transparent;
+}
