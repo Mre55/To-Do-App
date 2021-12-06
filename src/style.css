@@ -47,14 +47,27 @@ article span {
 
 .inputField {
   border: none;
+  width: 80%;
 }
 
 .text-area-class {
   border: none;
   resize: none;
+  width: 70%;
 }
 
 .todo-btn {
   border: none;
   background: transparent;
+  float: right;
+}
+
+.input-div-span {
+  float: right;
+  padding-right: 15px;
+  opacity: 0.6;
+}
+
+.input-div {
+  width: 100%;
 }
