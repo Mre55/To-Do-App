@@ -2,7 +2,8 @@
 
 This project is a simple HTML list of To Do tasks. 
 
-![image](https://user-images.githubusercontent.com/34578631/144275642-b37f4e8d-b5e2-42d7-b632-6de1875563c8.png)
+<img width="765" alt="Screen Shot 2021-12-08 at 6 28 35 PM" src="https://user-images.githubusercontent.com/34578631/145235603-ed760c10-0559-4d1c-adc7-e71e3a1b2c55.png">
+
 
 This To-do list project set-up GitHub Actions that uses linter for HTML, CSS, and JavaScript also uses webpack as module bundler.
 
